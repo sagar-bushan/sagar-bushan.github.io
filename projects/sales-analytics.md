@@ -49,25 +49,42 @@ Large sales organization with 2000+ representatives lacking standardized perform
 ![Territory Analysis](/images/territory-analysis.png)
 
 ## Code Snippets
-```python
-# Example of commission calculation
-def calculate_commission(df):
-    # Apply tiered commission structure
-    def get_commission_rate(performance_score):
-        if performance_score >= 90:
-            return 0.15
-        elif performance_score >= 75:
-            return 0.10
-        else:
-            return 0.05
-    
-    df['commission_rate'] = df['performance_score'].apply(get_commission_rate)
-    df['commission'] = df['sales_amount'] * df['commission_rate']
-    
-    return df
+```sql
+-- Example of sales performance analysis
+WITH sales_metrics AS (
+    SELECT 
+        sales_rep_id,
+        territory_id,
+        SUM(sale_amount) as total_sales,
+        COUNT(DISTINCT customer_id) as unique_customers,
+        AVG(deal_size) as avg_deal_size,
+        SUM(CASE WHEN status = 'Won' THEN 1 ELSE 0 END) as won_deals,
+        COUNT(*) as total_deals
+    FROM sales_data
+    WHERE date_created BETWEEN '2024-01-01' AND '2024-12-31'
+    GROUP BY sales_rep_id, territory_id
+)
+SELECT 
+    sm.*,
+    total_sales / NULLIF(total_deals, 0) as avg_sale_value,
+    won_deals::FLOAT / NULLIF(total_deals, 0) as win_rate,
+    total_sales / territory_target.target_amount as target_achievement
+FROM sales_metrics sm
+JOIN territory_target ON sm.territory_id = territory_target.territory_id;
+
+-- Example of commission calculation
+SELECT 
+    sales_rep_id,
+    total_sales,
+    CASE 
+        WHEN target_achievement >= 1.2 THEN total_sales * 0.15
+        WHEN target_achievement >= 1.0 THEN total_sales * 0.10
+        ELSE total_sales * 0.05
+    END as commission_amount
+FROM sales_metrics;
 ```
 
 ## Future Enhancements
-- AI-powered territory optimization
-- Predictive performance analytics
+- Enhanced territory mapping system
+- Advanced performance analytics
 - Mobile dashboard implementation
