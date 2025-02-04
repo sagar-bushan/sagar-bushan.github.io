@@ -15,7 +15,7 @@ Multinational organization facing challenges with travel expense management acro
 ### Analysis & Implementation
 1. Expense Pattern Analysis
    - Created expense benchmarking system
-   - Implemented anomaly detection
+   - Implemented statistical outlier detection
    - Developed trend analysis
 
 2. Policy Compliance Monitoring
@@ -36,7 +36,7 @@ Multinational organization facing challenges with travel expense management acro
 - **Key Features:**
   - Automated data integration
   - Real-time compliance checking
-  - Advanced analytics reporting
+  - Statistical analysis reporting
 
 ## Results & Impact
 - $125K reduction in travel expenses
@@ -49,26 +49,49 @@ Multinational organization facing challenges with travel expense management acro
 ![Policy Compliance Tracking](/images/compliance-tracking.png)
 
 ## Code Snippets
-```python
-# Example of expense anomaly detection
-def detect_anomalies(df):
-    # Calculate Z-scores for expenses
-    df['expense_zscore'] = stats.zscore(df['expense_amount'])
-    
-    # Flag potential anomalies
-    df['is_anomaly'] = df['expense_zscore'].apply(
-        lambda x: True if abs(x) > 3 else False
-    )
-    
-    # Group by expense category
-    anomalies = df[df['is_anomaly']].groupby('expense_category').agg({
-        'expense_amount': ['count', 'sum']
-    })
-    
-    return anomalies
+```sql
+-- Example of expense analysis by department
+WITH dept_expenses AS (
+    SELECT 
+        department_id,
+        expense_category,
+        SUM(amount) as total_amount,
+        COUNT(*) as transaction_count,
+        AVG(amount) as avg_amount,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY amount) as amount_75th_percentile
+    FROM expense_transactions
+    WHERE transaction_date >= DATEADD(month, -3, GETDATE())
+    GROUP BY department_id, expense_category
+)
+SELECT 
+    d.department_name,
+    de.*,
+    total_amount / dept_budget.quarterly_budget as budget_utilization
+FROM dept_expenses de
+JOIN departments d ON de.department_id = d.department_id
+JOIN dept_budget ON de.department_id = dept_budget.department_id;
+
+-- Example of policy violation detection
+SELECT 
+    t.transaction_id,
+    t.employee_id,
+    t.expense_category,
+    t.amount,
+    p.max_amount as category_limit,
+    CASE 
+        WHEN t.amount > p.max_amount THEN 'Amount Exceeded'
+        WHEN t.receipt_status = 'Missing' THEN 'Missing Receipt'
+        WHEN DATEDIFF(day, t.transaction_date, t.submission_date) > 30 THEN 'Late Submission'
+        ELSE 'Compliant'
+    END as violation_type
+FROM expense_transactions t
+JOIN policy_limits p ON t.expense_category = p.expense_category
+WHERE t.amount > p.max_amount 
+    OR t.receipt_status = 'Missing'
+    OR DATEDIFF(day, t.transaction_date, t.submission_date) > 30;
 ```
 
 ## Future Enhancements
-- ML-based fraud detection
+- Enhanced policy compliance checking
 - Mobile expense tracking
-- Advanced policy recommendation engine
+- Advanced cost analytics
