@@ -13,9 +13,9 @@ Manufacturing and e-commerce company experiencing inventory management challenge
 - Created unified supply chain database
 
 ### Analysis & Implementation
-1. Demand Forecasting
-   - Implemented time series forecasting models
-   - Created seasonal adjustment factors
+1. Demand Analysis
+   - Implemented moving average forecasting
+   - Created seasonal index calculations
    - Developed promotion impact analysis
 
 2. Inventory Optimization
@@ -30,13 +30,13 @@ Manufacturing and e-commerce company experiencing inventory management challenge
 
 ## Technical Implementation
 - **Languages & Tools:**
-  - Python (Prophet, statsmodels)
+  - Python (pandas) for analysis
   - SQL for data management
   - Power BI for visualization
-- **Key Algorithms:**
-  - Prophet forecasting model
-  - ABC-XYZ analysis
-  - Safety stock optimization
+- **Key Features:**
+  - Automated inventory tracking
+  - ABC analysis
+  - Safety stock calculation
 
 ## Results & Impact
 - Reduced stockouts by 35%
@@ -50,26 +50,40 @@ Manufacturing and e-commerce company experiencing inventory management challenge
 
 ## Code Snippets
 ```python
-# Example of demand forecasting
-from fbprophet import Prophet
+# Example of demand forecasting using moving averages
+def calculate_forecast(df):
+    # Calculate 3-month moving average
+    df['forecast_ma3'] = df['sales'].rolling(window=3).mean()
+    
+    # Calculate 6-month moving average
+    df['forecast_ma6'] = df['sales'].rolling(window=6).mean()
+    
+    # Calculate seasonal indices
+    df['month'] = df['date'].dt.month
+    seasonal_indices = df.groupby('month')['sales'].mean() / df['sales'].mean()
+    
+    return df, seasonal_indices
 
-def forecast_demand(df):
-    # Prepare data for Prophet
-    model = Prophet(
-        yearly_seasonality=True,
-        weekly_seasonality=True,
-        daily_seasonality=False
-    )
+# Example of ABC analysis
+def perform_abc_analysis(df):
+    # Calculate total value for each product
+    df['total_value'] = df['annual_usage'] * df['unit_cost']
     
-    # Fit model and create forecast
-    model.fit(df)
-    future = model.make_future_dataframe(periods=30)
-    forecast = model.predict(future)
+    # Sort products by total value
+    df = df.sort_values('total_value', ascending=False)
     
-    return forecast
+    # Calculate cumulative percentage
+    df['cumulative_value'] = df['total_value'].cumsum() / df['total_value'].sum()
+    
+    # Assign ABC categories
+    df['category'] = 'C'
+    df.loc[df['cumulative_value'] <= 0.8, 'category'] = 'A'
+    df.loc[(df['cumulative_value'] > 0.8) & (df['cumulative_value'] <= 0.95), 'category'] = 'B'
+    
+    return df
 ```
 
 ## Future Enhancements
-- Machine learning for anomaly detection
-- Advanced seasonality modeling
+- Enhanced seasonality analysis
+- Advanced inventory optimization
 - Integration with ERP system
