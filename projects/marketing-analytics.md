@@ -13,15 +13,15 @@ Digital marketing team struggling with high customer acquisition costs and ineff
 - Created unified data model for cross-channel analysis
 
 ### Analysis & Implementation
-1. Multi-Channel Attribution
-   - Implemented attribution modeling across touchpoints
-   - Created conversion path analysis
-   - Developed channel contribution scoring
+1. Channel Performance Analysis
+   - Implemented last-click attribution model
+   - Created conversion funnel analysis
+   - Developed cost per acquisition tracking
 
 2. Campaign Optimization
-   - Built predictive models for campaign performance
+   - Built campaign performance scorecards
    - Implemented A/B test analysis framework
-   - Created budget allocation optimizer
+   - Created ROI-based budget allocation system
 
 3. Dashboard Development
    - Developed real-time campaign performance dashboard
@@ -30,13 +30,13 @@ Digital marketing team struggling with high customer acquisition costs and ineff
 
 ## Technical Implementation
 - **Languages & Tools:**
-  - Python (pandas, scipy, numpy)
+  - Python (pandas, numpy) for data analysis
   - SQL for data integration
   - Power BI for visualization
-- **Key Algorithms:**
-  - Markov Chain attribution model
-  - Gradient Boosting for conversion prediction
-  - Linear Programming for budget optimization
+- **Key Features:**
+  - Automated ETL pipeline
+  - Custom performance metrics
+  - Cross-channel analysis
 
 ## Results & Impact
 - 40% reduction in Customer Acquisition Cost
@@ -50,22 +50,41 @@ Digital marketing team struggling with high customer acquisition costs and ineff
 
 ## Code Snippets
 ```python
-# Example of channel attribution scoring
-def calculate_channel_attribution(df):
-    # Calculate channel contribution
-    df['channel_weight'] = df.apply(lambda x: 
-        x['conversion_value'] * x['channel_position_weight'], axis=1)
-    
-    # Aggregate by channel
-    channel_impact = df.groupby('channel_name').agg({
-        'channel_weight': 'sum',
-        'conversions': 'count'
+# Example of campaign performance analysis
+def analyze_campaign_performance(df):
+    # Calculate key metrics by channel
+    performance = df.groupby('channel_name').agg({
+        'spend': 'sum',
+        'impressions': 'sum',
+        'clicks': 'sum',
+        'conversions': 'sum',
+        'revenue': 'sum'
     }).reset_index()
     
-    return channel_impact
+    # Calculate derived metrics
+    performance['ctr'] = performance['clicks'] / performance['impressions']
+    performance['conversion_rate'] = performance['conversions'] / performance['clicks']
+    performance['cpa'] = performance['spend'] / performance['conversions']
+    performance['roas'] = performance['revenue'] / performance['spend']
+    
+    return performance
+
+# Example of daily trend analysis
+def analyze_daily_trends(df):
+    daily_metrics = df.groupby('date').agg({
+        'spend': 'sum',
+        'conversions': 'sum',
+        'revenue': 'sum'
+    }).reset_index()
+    
+    # Calculate 7-day moving averages
+    daily_metrics['spend_ma7'] = daily_metrics['spend'].rolling(7).mean()
+    daily_metrics['conversion_ma7'] = daily_metrics['conversions'].rolling(7).mean()
+    
+    return daily_metrics
 ```
 
 ## Future Enhancements
-- Implementation of ML-based budget optimization
-- Real-time bidding adjustments
+- Enhanced conversion attribution modeling
+- Automated budget reallocation system
 - Advanced customer journey analytics
