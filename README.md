@@ -5,7 +5,7 @@ Experienced Analytics Leader with 9+ years of expertise in transforming data int
 
 ### Core Competencies
 - **Analytics Leadership:** Led multi-cultural teams across global locations, driving data-driven decision making
-- **Technical Skills:** Python, SQL, Power BI, Tableau, Azure, Machine Learning
+- **Technical Skills:** Python, SQL, Power BI, Tableau, Azure
 - **Domain Expertise:** Customer Analytics, Marketing Optimization, Supply Chain Analytics
 - **Business Impact:** Proven track record of delivering multi-million dollar cost savings and revenue improvements
 
