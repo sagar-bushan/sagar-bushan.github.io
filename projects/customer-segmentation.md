@@ -14,9 +14,9 @@ E-commerce company facing challenges with high return rates and inefficient mark
 
 ### Analysis & Implementation
 1. Customer Segmentation
-   - Implemented RFM (Recency, Frequency, Monetary) analysis
-   - Applied k-means clustering to identify distinct customer segments
-   - Created customer value scoring system
+   - Implemented comprehensive segmentation using multiple approaches
+   - Developed composite scoring system
+   - Created dynamic customer value analysis
 
 2. Return Rate Analysis
    - Developed return rate tracking by customer segment
@@ -30,12 +30,12 @@ E-commerce company facing challenges with high return rates and inefficient mark
 
 ## Technical Implementation
 - **Languages & Tools:**
-  - Python (pandas, sklearn) for analysis
+  - Python (pandas) for analysis
   - SQL for data extraction
   - Power BI for visualization
 - **Key Features:**
-  - RFM scoring system
-  - Basic k-means clustering
+  - Multi-approach customer segmentation
+  - Dynamic scoring system
   - Automated reporting
 
 ## Results & Impact
@@ -50,62 +50,71 @@ E-commerce company facing challenges with high return rates and inefficient mark
 
 ## Code Snippets
 ```python
-# Example of RFM analysis implementation
-def calculate_rfm_scores(df):
-    # Calculate Recency
-    current_date = df['purchase_date'].max()
-    df['recency'] = (current_date - df['last_purchase_date']).dt.days
+def basic_segment_customers(df):
+    # Calculate key metrics
+    customer_metrics = df.groupby('customer_id').agg({
+        'order_id': 'count',
+        'total_amount': 'sum'
+    }).reset_index()
     
-    # Calculate Frequency
-    frequency_df = df.groupby('customer_id')['order_id'].count().reset_index()
-    frequency_df.columns = ['customer_id', 'frequency']
+    # Define segment thresholds
+    freq_threshold = customer_metrics['order_id'].median()
+    spend_threshold = customer_metrics['total_amount'].median()
     
-    # Calculate Monetary
-    monetary_df = df.groupby('customer_id')['total_amount'].sum().reset_index()
-    monetary_df.columns = ['customer_id', 'monetary']
+    # Assign segments
+    def assign_segment(row):
+        if row['order_id'] >= freq_threshold and row['total_amount'] >= spend_threshold:
+            return 'High Value'
+        elif row['order_id'] >= freq_threshold:
+            return 'Frequent Buyers'
+        elif row['total_amount'] >= spend_threshold:
+            return 'Big Spenders'
+        else:
+            return 'Standard'
     
-    # Combine all metrics
-    rfm_df = pd.merge(frequency_df, monetary_df, on='customer_id')
-    rfm_df = pd.merge(rfm_df, df[['customer_id', 'recency']].drop_duplicates(), on='customer_id')
-    
-    # Score each component (1-5 scale)
-    rfm_df['r_score'] = pd.qcut(rfm_df['recency'], q=5, labels=[5,4,3,2,1])
-    rfm_df['f_score'] = pd.qcut(rfm_df['frequency'], q=5, labels=[1,2,3,4,5])
-    rfm_df['m_score'] = pd.qcut(rfm_df['monetary'], q=5, labels=[1,2,3,4,5])
-    
-    return rfm_df
+    customer_metrics['basic_segment'] = customer_metrics.apply(assign_segment, axis=1)
+    return customer_metrics
 
-# Example of basic customer segmentation using k-means
-def segment_customers(rfm_df):
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.cluster import KMeans
+def advanced_segment_customers(df):
+    # Calculate key metrics
+    customer_metrics = df.groupby('customer_id').agg({
+        'order_id': 'count',
+        'total_amount': 'sum',
+        'last_purchase_date': 'max',
+        'first_purchase_date': 'min'
+    }).reset_index()
     
-    # Prepare data for clustering
-    features = ['r_score', 'f_score', 'm_score']
-    X = rfm_df[features].values
+    # Calculate additional features
+    customer_metrics['avg_order_value'] = customer_metrics['total_amount'] / customer_metrics['order_id']
+    customer_metrics['purchase_span'] = (customer_metrics['last_purchase_date'] - 
+                                       customer_metrics['first_purchase_date']).dt.days
+    customer_metrics['purchase_frequency'] = customer_metrics['order_id'] / customer_metrics['purchase_span']
     
-    # Scale the features
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X)
+    # Calculate percentile ranks
+    for col in ['purchase_frequency', 'avg_order_value', 'total_amount']:
+        customer_metrics[f'{col}_rank'] = customer_metrics[col].rank(pct=True)
     
-    # Apply k-means clustering
-    kmeans = KMeans(n_clusters=4, random_state=42)
-    rfm_df['segment'] = kmeans.fit_predict(X_scaled)
+    # Composite score calculation
+    customer_metrics['value_score'] = (
+        0.4 * customer_metrics['total_amount_rank'] +
+        0.3 * customer_metrics['purchase_frequency_rank'] +
+        0.3 * customer_metrics['avg_order_value_rank']
+    )
     
-    # Label segments based on characteristics
-    segment_labels = {
-        0: 'Loyal Customers',
-        1: 'At Risk Customers',
-        2: 'Lost Customers',
-        3: 'New Customers'
-    }
-    rfm_df['segment_label'] = rfm_df['segment'].map(segment_labels)
+    # Dynamic segmentation based on natural breaks
+    def get_segment(score):
+        if score >= 0.8: return 'Premium'
+        elif score >= 0.6: return 'Loyal'
+        elif score >= 0.4: return 'Regular'
+        elif score >= 0.2: return 'Occasional'
+        else: return 'At Risk'
     
-    return rfm_df
+    customer_metrics['advanced_segment'] = customer_metrics['value_score'].apply(get_segment)
+    return customer_metrics
 
 # Example of return rate analysis by segment
 def analyze_returns(df):
-    return_analysis = df.groupby('segment_label').agg({
+    return_analysis = df.groupby('segment').agg({
         'order_id': 'count',
         'is_returned': 'sum',
         'total_amount': 'sum'
