@@ -13,8 +13,8 @@ Analytics Leader with 9+ years of experience transforming data into actionable b
 
 ### 1. Customer Segmentation & Return Rate Optimization
 [View Details](./projects/customer-segmentation.md)
-- Implemented RFM analysis and customer segmentation for an e-commerce platform
-- Developed automated return rate tracking and analysis system
+- Developed advanced customer segmentation using composite scoring system
+- Created automated return rate tracking and cohort analysis pipeline
 - **Impact:** 25% reduction in return rates, enhanced customer profitability
 - **Tools:** Python, SQL, Power BI
 
