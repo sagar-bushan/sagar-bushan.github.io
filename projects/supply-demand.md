@@ -1,89 +1,161 @@
-# Supply-Demand Forecasting System
+# Supply Chain Analytics Dashboard
 
 ## Business Problem
-Manufacturing and e-commerce company experiencing inventory management challenges including stockouts and excess inventory. Needed to optimize supply chain operations through better demand forecasting and inventory management.
+Global manufacturing company needed to optimize inventory management and reduce costs through data-driven decision making. Key challenges included:
+- Frequent stockouts affecting customer satisfaction
+- High holding costs from excess inventory
+- Limited visibility into supply chain performance
+- Inefficient cost management
 
 ## Solution Approach
-### Data Collection & Preparation
-- Consolidated data from:
-  - Historical sales data
-  - Inventory levels
-  - Manufacturing schedules
-  - Supplier lead times
-- Created unified supply chain database
+### Data Integration & Processing
+- Consolidated data sources:
+  - ERP system inventory data
+  - Historical demand patterns
+  - Cost metrics
+  - Performance indicators
+- Created automated data pipeline using Python and SQL
+- Implemented daily refresh mechanism
 
-### Analysis & Implementation
-1. Demand Analysis
-   - Implemented moving average forecasting
-   - Created seasonal index calculations
-   - Developed promotion impact analysis
+### Analytics Implementation
+1. Predictive Analytics
+   - Developed basic demand forecasting model
+   - Implemented trend analysis algorithms
+   - Created seasonal pattern detection
+   - Built anomaly identification system
 
-2. Inventory Optimization
-   - Built safety stock calculator
-   - Implemented reorder point optimization
-   - Created stock level monitoring system
+2. Cost Optimization
+   - Designed holding cost tracking system
+   - Implemented stockout impact analysis
+   - Created cost optimization framework
+   - Developed efficiency metrics
 
 3. Dashboard Development
-   - Developed real-time inventory dashboard
-   - Created forecast accuracy tracking
-   - Implemented alert system
+   - Built interactive Power BI dashboard
+   - Created real-time monitoring system
+   - Implemented drill-down capabilities
+   - Designed automated alert system
 
 ## Technical Implementation
-- **Languages & Tools:**
-  - Python (pandas) for analysis
-  - SQL for data management
+- **Technologies Used:**
+  - Python for data processing and predictive modeling
+  - SQL for data storage and management
   - Power BI for visualization
+  - Azure Data Factory for integration
+
 - **Key Features:**
-  - Automated inventory tracking
-  - ABC analysis
-  - Safety stock calculation
+  - Real-time inventory tracking
+  - Predictive analytics dashboard
+  - Cost optimization metrics
+  - Performance monitoring system
 
 ## Results & Impact
-- Reduced stockouts by 35%
-- Decreased holding costs by 20%
-- Improved forecast accuracy by 25%
-- Enhanced supplier relationship management
+- **Operational Improvements:**
+  - 35% reduction in stockouts
+  - 20% decrease in holding costs
+  - Enhanced supply chain visibility
+  - Improved decision-making capabilities
 
-## Visualizations
-![Demand Forecast Dashboard](/images/demand-forecast.png)
-![Inventory Management](/images/inventory-management.png)
+- **Business Benefits:**
+  - Optimized inventory levels
+  - Enhanced cost management
+  - Improved forecast accuracy
+  - Better resource allocation
 
-## Code Snippets
+## Dashboard Overview
+![Supply Chain Analytics Dashboard](/images/supply-chain-dashboard.png)
+
+**Key Dashboard Components:**
+- Inventory Management Chart
+  * Demand forecast line
+  * Actual inventory levels
+  * Safety stock threshold
+  * Stockout indicators
+
+- Cost Analysis Section
+  * Holding cost trends
+  * Stockout impact
+  * Cost optimization opportunities
+  * Efficiency metrics
+
+## Sample Code
 ```python
-# Example of demand forecasting using moving averages
-def calculate_forecast(df):
-    # Calculate 3-month moving average
-    df['forecast_ma3'] = df['sales'].rolling(window=3).mean()
+# Inventory Analytics System
+def analyze_inventory_metrics(df):
+    """
+    Analyze inventory metrics and generate key insights
+    """
+    # Calculate key metrics
+    metrics = {
+        'current_stock': df['inventory_level'].sum(),
+        'stockout_rate': calculate_stockout_rate(df),
+        'holding_cost': calculate_holding_cost(df),
+        'forecast_accuracy': calculate_forecast_accuracy(df)
+    }
     
-    # Calculate 6-month moving average
-    df['forecast_ma6'] = df['sales'].rolling(window=6).mean()
+    # Generate insights
+    insights = generate_insights(metrics)
     
-    # Calculate seasonal indices
-    df['month'] = df['date'].dt.month
-    seasonal_indices = df.groupby('month')['sales'].mean() / df['sales'].mean()
-    
-    return df, seasonal_indices
+    return metrics, insights
 
-# Example of ABC analysis
-def perform_abc_analysis(df):
-    # Calculate total value for each product
-    df['total_value'] = df['annual_usage'] * df['unit_cost']
+def calculate_stockout_rate(df):
+    """
+    Calculate stockout rate and identify risk areas
+    """
+    total_days = len(df)
+    stockout_days = len(df[df['inventory_level'] < df['safety_stock']])
     
-    # Sort products by total value
-    df = df.sort_values('total_value', ascending=False)
+    return (stockout_days / total_days) * 100
+
+def calculate_holding_cost(df):
+    """
+    Calculate holding cost and optimization opportunities
+    """
+    avg_inventory = df['inventory_level'].mean()
+    holding_cost_rate = 0.1  # 10% annual holding cost rate
     
-    # Calculate cumulative percentage
-    df['cumulative_value'] = df['total_value'].cumsum() / df['total_value'].sum()
+    return avg_inventory * holding_cost_rate
+
+def calculate_forecast_accuracy(df):
+    """
+    Calculate forecast accuracy and identify improvement areas
+    """
+    mape = calculate_mape(df['forecast'], df['actual'])
     
-    # Assign ABC categories
-    df['category'] = 'C'
-    df.loc[df['cumulative_value'] <= 0.8, 'category'] = 'A'
-    df.loc[(df['cumulative_value'] > 0.8) & (df['cumulative_value'] <= 0.95), 'category'] = 'B'
-    
-    return df
+    return 100 - mape
 ```
 
+## Implementation Guide
+1. **Data Setup:**
+   - Configure data source connections
+   - Set up SQL database
+   - Initialize Python environment
+
+2. **Dashboard Configuration:**
+   - Import Power BI template
+   - Connect to data sources
+   - Configure refresh settings
+
+3. **System Maintenance:**
+   - Monitor data refresh
+   - Update forecast models
+   - Optimize performance
+
 ## Future Enhancements
-- Enhanced seasonality analysis
-- Advanced inventory optimization
-- Integration with ERP system
+1. **Advanced Analytics:**
+   - Machine learning integration
+   - Advanced forecasting models
+   - Pattern recognition
+
+2. **System Optimization:**
+   - Real-time processing
+   - Enhanced automation
+   - Additional data sources
+
+3. **Visualization Updates:**
+   - Mobile optimization
+   - Custom reporting
+   - Advanced interactivity
+
+---
+*For more information or collaboration opportunities, please reach out through the contact information provided in the main portfolio.*
