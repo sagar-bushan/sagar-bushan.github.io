@@ -1,160 +1,191 @@
-# Customer Segmentation & Return Rate Optimization
+# Customer Segmentation Using K-Means Clustering
 
 ## Business Problem
-E-commerce company facing challenges with high return rates and inefficient marketing spend due to lack of customer segmentation. Needed to optimize marketing strategies and reduce return rates while maintaining customer satisfaction.
+E-commerce company needed to optimize marketing strategies and reduce return rates through better customer understanding. Key challenges included:
+- High product return rates affecting profitability
+- Inefficient marketing spend across customer groups
+- Limited understanding of customer behavior patterns
+- Need for data-driven customer targeting
 
 ## Solution Approach
-### Data Collection & Preparation
-- Integrated data from multiple sources:
-  - Customer transaction history
-  - Product returns data
-  - Customer service interactions
-  - Marketing campaign data
-- Created unified customer database
+### Data Integration & Processing
+- Consolidated customer data sources:
+  - Purchase history
+  - Return patterns
+  - Customer demographics
+  - Behavioral metrics
+- Created unified customer database with 60,000+ profiles
+- Implemented automated data cleaning pipeline
 
-### Analysis & Implementation
-1. Customer Segmentation
-   - Developed composite scoring system based on purchase patterns
-   - Implemented dynamic segmentation using natural breaks
-   - Created customer value scoring system
+### Analytics Implementation
+1. Feature Engineering
+   - Calculated RFM (Recency, Frequency, Monetary) scores
+   - Developed customer behavior metrics
+   - Created purchase pattern indicators
+   - Built return rate metrics
 
-2. Return Rate Analysis
-   - Developed return rate tracking by customer segment
-   - Identified high-risk product categories
-   - Implemented customer return propensity scoring
+2. Clustering Implementation
+   - Implemented K-means clustering algorithm
+   - Optimized cluster count using elbow method
+   - Developed cluster stability metrics
+   - Created segment profiling system
 
 3. Dashboard Development
-   - Created interactive Power BI dashboard for tracking KPIs
-   - Implemented drill-down capabilities for detailed analysis
-   - Set up automated data refresh pipeline
+   - Built interactive Power BI dashboard
+   - Created segment analysis views
+   - Implemented drill-down capabilities
+   - Designed automated reporting system
 
 ## Technical Implementation
-- **Languages & Tools:**
-  - Python (pandas) for analysis
-  - SQL for data extraction
+- **Technologies Used:**
+  - Python (scikit-learn) for clustering
+  - SQL for data management
   - Power BI for visualization
+  - Azure for data processing
+
 - **Key Features:**
-  - Advanced customer segmentation
-  - Dynamic scoring system
-  - Automated reporting
+  - Automated customer scoring
+  - Dynamic segmentation
+  - Real-time segment tracking
+  - Performance monitoring
 
 ## Results & Impact
-- 25% reduction in return rates
-- Improved marketing ROI through targeted campaigns
-- Enhanced customer satisfaction scores
-- Automated reporting saving 10+ hours weekly
+- **Business Improvements:**
+  - 25% reduction in return rates
+  - Enhanced customer targeting
+  - Improved marketing efficiency
+  - Better resource allocation
 
-## Visualizations
-![Customer Segmentation Dashboard](/images/customer-segmentation.png)
-![Return Rate Analysis](/images/return-analysis.png)
+- **Operational Benefits:**
+  - Clear customer segments identified
+  - Targeted marketing opportunities
+  - Improved customer understanding
+  - Data-driven decision making
 
-## Code Snippets
+## Dashboard Overview
+![Customer Segmentation Dashboard](/images/customer-segmentation-dashboard.png)
+
+**Key Dashboard Components:**
+- Cluster Analysis View
+  * Segment distribution
+  * Feature importance
+  * Cluster characteristics
+  * Segment metrics
+
+- Performance Metrics
+  * Return rates by segment
+  * Customer value analysis
+  * Behavioral patterns
+  * Segment trends
+
+## Sample Code
 ```python
-def segment_customers(df):
-    # Calculate core customer metrics
-    customer_metrics = df.groupby('customer_id').agg({
-        'order_id': 'count',
-        'total_amount': 'sum',
-        'last_purchase_date': 'max',
-        'first_purchase_date': 'min'
-    }).reset_index()
+# Customer Segmentation System
+def implement_customer_segmentation(df):
+    """
+    Implement K-means clustering for customer segmentation
+    """
+    # Calculate RFM scores
+    rfm_data = calculate_rfm_scores(df)
     
-    # Derive customer behavior metrics
-    customer_metrics['avg_order_value'] = customer_metrics['total_amount'] / customer_metrics['order_id']
+    # Normalize features
+    scaler = StandardScaler()
+    features_normalized = scaler.fit_transform(rfm_data)
     
-    # Calculate purchase timespan and frequency
-    customer_metrics['purchase_span'] = (customer_metrics['last_purchase_date'] - 
-                                     customer_metrics['first_purchase_date']).dt.days
+    # Implement K-means
+    kmeans = determine_optimal_clusters(features_normalized)
     
-    # Handle edge case of single-day purchasers
-    customer_metrics['purchase_span'] = customer_metrics['purchase_span'].replace(0, 1)
-    customer_metrics['purchase_frequency'] = customer_metrics['order_id'] / customer_metrics['purchase_span']
+    # Assign clusters
+    df['segment'] = kmeans.labels_
     
-    # Calculate percentile rankings for key metrics
-    for col in ['purchase_frequency', 'avg_order_value', 'total_amount']:
-        customer_metrics[f'{col}_rank'] = customer_metrics[col].rank(pct=True)
-    
-    # Composite score calculation with empirically determined weights
-    customer_metrics['value_score'] = (
-        0.4 * customer_metrics['total_amount_rank'] +
-        0.3 * customer_metrics['purchase_frequency_rank'] + 
-        0.3 * customer_metrics['avg_order_value_rank']
-    )
-    
-    # Segment assignment based on score distribution
-    def get_segment(score):
-        if score >= 0.8: 
-            return 'Premium'
-        elif score >= 0.6:
-            return 'Loyal'
-        elif score >= 0.4:
-            return 'Regular'
-        elif score >= 0.2:
-            return 'Occasional'
-        else:
-            return 'At Risk'
-    
-    customer_metrics['segment'] = customer_metrics['value_score'].apply(get_segment)
-    return customer_metrics
+    return df, kmeans
 
-def analyze_returns(df):
-    # Aggregate return metrics by segment
-    return_analysis = df.groupby('segment').agg({
-        'order_id': 'count',
-        'is_returned': 'sum',
-        'total_amount': 'sum'
-    }).reset_index()
+def calculate_rfm_scores(df):
+    """
+    Calculate Recency, Frequency, Monetary scores
+    """
+    # Calculate metrics
+    recency = calculate_recency(df)
+    frequency = calculate_frequency(df)
+    monetary = calculate_monetary(df)
     
-    # Calculate key performance indicators
-    return_analysis['return_rate'] = return_analysis['is_returned'] / return_analysis['order_id']
-    return_analysis['avg_order_value'] = return_analysis['total_amount'] / return_analysis['order_id']
+    # Combine scores
+    rfm_scores = pd.concat([recency, frequency, monetary], axis=1)
     
-    return return_analysis
+    return rfm_scores
+
+def determine_optimal_clusters(features):
+    """
+    Determine optimal number of clusters using elbow method
+    """
+    distortions = []
+    K = range(1, 10)
+    
+    for k in K:
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans.fit(features)
+        distortions.append(kmeans.inertia_)
+    
+    # Find optimal k using elbow method
+    optimal_k = find_elbow_point(K, distortions)
+    
+    # Final model
+    final_model = KMeans(n_clusters=optimal_k, random_state=42)
+    final_model.fit(features)
+    
+    return final_model
+
+def profile_segments(df):
+    """
+    Generate detailed profiles for each customer segment
+    """
+    segment_profiles = []
+    
+    for segment in df['segment'].unique():
+        segment_data = df[df['segment'] == segment]
+        profile = {
+            'segment_id': segment,
+            'size': len(segment_data),
+            'avg_value': segment_data['monetary'].mean(),
+            'return_rate': calculate_return_rate(segment_data),
+            'characteristics': identify_characteristics(segment_data)
+        }
+        segment_profiles.append(profile)
+    
+    return segment_profiles
 ```
 
-```sql
--- Customer cohort analysis for retention tracking
-WITH cohort_items AS (
-    SELECT
-        customer_id,
-        MIN(DATE_TRUNC('month', first_purchase_date)) as cohort_month,
-        COUNT(DISTINCT order_id) as total_orders,
-        SUM(total_amount) as total_spend
-    FROM customer_orders
-    GROUP BY customer_id
-),
-cohort_size AS (
-    SELECT 
-        cohort_month,
-        COUNT(DISTINCT customer_id) as num_customers,
-        SUM(total_orders) as total_orders,
-        SUM(total_spend) as total_revenue
-    FROM cohort_items
-    GROUP BY cohort_month
-),
-retention_table AS (
-    SELECT 
-        c.cohort_month,
-        DATE_PART('month', o.order_date) - 
-        DATE_PART('month', c.cohort_month) as months_since_first_purchase,
-        COUNT(DISTINCT o.customer_id) as num_customers
-    FROM cohort_items c
-    LEFT JOIN orders o ON c.customer_id = o.customer_id
-    GROUP BY 1, 2
-)
-SELECT 
-    cohort_month,
-    months_since_first_purchase,
-    num_customers,
-    ROUND(100.0 * num_customers / 
-        FIRST_VALUE(num_customers) OVER (
-            PARTITION BY cohort_month ORDER BY months_since_first_purchase
-        ), 2) as retention_rate
-FROM retention_table
-ORDER BY cohort_month, months_since_first_purchase;
-```
+## Implementation Guide
+1. **Data Preparation:**
+   - Clean and standardize customer data
+   - Calculate required metrics
+   - Prepare feature set
+
+2. **Clustering Setup:**
+   - Implement K-means algorithm
+   - Optimize cluster parameters
+   - Validate results
+
+3. **Dashboard Configuration:**
+   - Import Power BI template
+   - Connect to data sources
+   - Set up refresh schedule
 
 ## Future Enhancements
-- Enhanced segmentation with additional customer attributes
-- Advanced return prediction analytics
-- Integration with marketing automation platforms
+1. **Advanced Analytics:**
+   - Implement additional clustering algorithms
+   - Develop predictive models
+   - Enhanced feature engineering
+
+2. **System Optimization:**
+   - Real-time clustering
+   - Automated segment updates
+   - Dynamic feature selection
+
+3. **Visualization Updates:**
+   - Enhanced interactivity
+   - Custom reporting
+   - Mobile optimization
+
+---
+*For more information or collaboration opportunities, please reach out through the contact information provided in the main portfolio.*
