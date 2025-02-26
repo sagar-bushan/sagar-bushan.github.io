@@ -1,52 +1,74 @@
-# Data Analytics & Business Intelligence Portfolio
+# My Analytics Portfolio
 
-## About Me
-Analytics Leader with 9+ years of experience transforming data into actionable business insights. Specialized in customer analytics, marketing optimization, and operational excellence across Financial Services, Real Estate, and Retail sectors.
-
-### Core Competencies
-- **Analytics Leadership:** Led multi-cultural teams across global locations, driving data-driven decision making
-- **Technical Skills:** Python, SQL, Power BI, Tableau, Azure
-- **Domain Expertise:** Customer Analytics, Marketing Optimization, Supply Chain Analytics
-- **Business Impact:** Proven track record of delivering multi-million dollar cost savings and revenue improvements
+Welcome to my project showcase. Each project represents real business challenges I've tackled through data analytics. Click on any project for a deeper dive into the approach, implementation, and results.
 
 ## Featured Projects
 
-### 1. Customer Segmentation & Return Rate Optimization
-[View Details](./projects/customer-segmentation.md)
-- Developed advanced customer segmentation using composite scoring system
-- Created automated return rate tracking and cohort analysis pipeline
-- **Impact:** 25% reduction in return rates, enhanced customer profitability
-- **Tools:** Python, SQL, Power BI
+### [Multi-Channel Marketing Analytics Platform](./projects/marketing-analytics.md)
 
-### 2. Marketing Campaign Performance Analyzer
-[View Details](./projects/marketing-analytics.md)
-- Built end-to-end marketing analytics platform for multi-channel campaigns
-- Implemented attribution tracking and ROI optimization framework
-- **Impact:** 40% reduction in Customer Acquisition Cost
-- **Tools:** Python, SQL, Power BI
+**Challenge:** E-commerce startup struggling with high acquisition costs across marketing channels  
+**Solution:** End-to-end performance tracking platform with attribution modeling  
+**Impact:** 40% reduction in Customer Acquisition Cost  
+**Tech Stack:** Python, SQL, Power BI  
 
-### 3. Sales Force Performance Dashboard
-[View Details](./projects/sales-analytics.md)
-- Designed KPI-driven performance tracking system for 2000+ sales representatives
-- Created automated incentive calculations and territory analysis
-- **Impact:** Improved sales efficiency and resource allocation
-- **Tools:** SQL, Power BI, Python
+---
 
-### 4. Supply-Demand Forecasting System
-[View Details](./projects/supply-demand.md)
-- Implemented demand forecasting and inventory optimization system
-- Created automated supply chain analytics dashboard
-- **Impact:** Reduced stockouts by 35%, decreased holding costs by 20%
-- **Tools:** Python, SQL, Power BI
+### [KPI-Driven Sales Performance Management System](./projects/sales-analytics.md)
 
-### 5. Travel Expense Analytics & Optimization
-[View Details](./projects/expense-analytics.md)
-- Developed automated expense analysis and compliance monitoring system
-- Implemented statistical analysis for policy violation detection
-- **Impact:** $125K reduction in travel expenses
-- **Tools:** Python, SQL, Tableau
+**Challenge:** Financial institution needed optimized performance tracking for 2000+ sales reps  
+**Solution:** Comprehensive KPI tracking system with automated incentive calculations  
+**Impact:** Reduced calculation time from 2 days to 8 hours  
+**Tech Stack:** SAS, SQL, Cognos, Unix Shell Scripts  
 
-## Contact Information
-- 📧 Email: sagar.bushan@gmail.com
-- 💼 LinkedIn: [Sagar Nagabushana](https://www.linkedin.com/in/sagar-nagabushana)
-- 🌐 GitHub: [sagar-bushan](https://github.com/sagar-bushan)
+---
+
+### [Predictive Supply Chain Analytics](./projects/supply-demand.md)
+
+**Challenge:** Manufacturing company faced inventory management issues  
+**Solution:** Demand forecasting model with inventory optimization framework  
+**Impact:** 35% reduction in stockouts, 20% decrease in holding costs  
+**Tech Stack:** Python, SQL, Power BI  
+
+---
+
+### [Customer Segmentation Using K-Means Clustering](./projects/customer-segmentation.md)
+
+**Challenge:** E-commerce company needed better customer understanding for targeting  
+**Solution:** K-means clustering on 60,000+ customer profiles with scoring system  
+**Impact:** 25% reduction in return rates  
+**Tech Stack:** Python (scikit-learn), SQL, Tableau  
+
+---
+
+### [Travel & Expense Analytics System](./projects/expense-analytics.md)
+
+**Challenge:** Global professional services firm needed to optimize travel expenses  
+**Solution:** Automated expense analysis with anomaly detection  
+**Impact:** $125,000 reduction in annual travel expenses  
+**Tech Stack:** Python, SQL, Tableau  
+
+---
+
+### [Performance Marketing Campaign Optimization](./projects/campaign-optimization.md)
+
+**Challenge:** Series A startup needed to optimize digital marketing spend  
+**Solution:** Cross-platform performance tracking with ROAS optimization  
+**Impact:** 5% increase in contribution margin (CM3)  
+**Tech Stack:** Python, SQL, Power BI  
+
+---
+
+### [Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)
+
+**Challenge:** Global real estate firm needed improved CRM adoption  
+**Solution:** Comprehensive CRM usage analytics with adoption tracking  
+**Impact:** 20% improvement in Global CRM utilization  
+**Tech Stack:** SQL, Python, Tableau  
+
+---
+
+## Let's Work Together
+
+I'm currently available for freelance projects and consulting engagements. If you're facing analytics challenges or looking to elevate your data strategy, let's talk.
+
+[📩 Contact Me](mailto:sagar.bushan@gmail.com) | [🏠 Back to Profile](./README.md)
