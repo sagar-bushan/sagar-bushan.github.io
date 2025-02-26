@@ -1,47 +1,52 @@
-# Sales Force Performance Dashboard
+# KPI-Driven Sales Performance Management System
 
-## Business Problem
-Large sales organization with 2000+ representatives lacking standardized performance tracking and incentive calculation system. Needed to implement fair, transparent, and motivating performance measurement while identifying optimization opportunities.
+## Business Challenge
 
-## Solution Approach
-### Data Collection & Preparation
-- Integrated data from multiple sources:
-  - CRM system sales data
-  - Territory mapping
-  - Historical performance metrics
-  - Commission structures
-- Standardized metrics across regions
+A leading financial institution needed to optimize performance tracking and incentive calculations for 2000+ sales representatives across multiple regions. Their existing manual processes were time-consuming (taking 2 full days to process), prone to errors, and lacked transparency for the sales team.
 
-### Analysis & Implementation
-1. KPI Framework Development
-   - Designed balanced scorecard approach
-   - Created performance benchmarking system
-   - Implemented territory-based adjustments
+## My Approach
 
-2. Incentive Calculation Engine
-   - Built automated commission calculator
-   - Implemented performance tier system
-   - Created exception handling framework
+I recognized this as a complex data integration and process automation opportunity with significant business impact potential. The solution needed to balance technical efficiency with user-friendly interfaces for sales managers.
 
-3. Analytics Dashboard
-   - Developed interactive performance dashboards
-   - Created territory analysis views
-   - Implemented drill-down capabilities
+### Project Phases:
 
-## Technical Implementation
-- **Languages & Tools:**
-  - SQL for data processing
-  - Python for automation
-  - Power BI for visualization
-- **Key Features:**
-  - Automated data refresh pipeline
-  - Real-time performance tracking
-  - Multi-level approval workflow
+1. **Requirements Analysis**
+   - Conducted workshops with sales leadership to map out KPI requirements
+   - Analyzed existing incentive structure and identified improvement opportunities
+   - Documented data sources and integration points
+
+2. **System Architecture**
+   - Designed comprehensive KPI tracking system using SAS, SQL, and Cognos
+   - Created automated incentive calculation engine with real-time territory analysis
+   - Implemented parallel processing using unix shell scripts for efficient data handling
+
+3. **Implementation & Training**
+   - Built interactive dashboards for performance visualization at individual/team levels
+   - Developed auditable calculation methodology
+   - Trained managers on system usage and KPI interpretation
 
 ## Results & Impact
-- Improved sales force efficiency by 20%
-- Reduced commission calculation time by 75%
-- Enhanced territory optimization
-- Increased sales representative satisfaction
 
-## Visualization
+![Sales Performance Dashboard](https://github.com/sagar-bushan/sagar-bushan.github.io/blob/main/dashboard-images/sales-dashboard.png)
+
+### Measurable Outcomes:
+- **Reduced calculation time** from 2 days to 8 hours
+- **Improved sales team efficiency** through data-driven territory allocation
+- **Enhanced transparency** in performance evaluation
+- **Minimized calculation errors** and disputes
+- **Streamlined audit process** for compliance requirements
+
+## Tools & Technologies
+
+- **Data Processing:** SAS, SQL Server
+- **Automation:** Unix Shell Scripts
+- **Visualization:** Cognos
+- **Integration:** ETL pipelines
+
+## Lessons Learned
+
+The project highlighted the importance of stakeholder alignment when transforming established processes. By involving sales managers early and demonstrating tangible time savings, we secured organization-wide adoption.
+
+---
+
+[📂 Back to Portfolio](https://github.com/sagar-bushan/sagar-bushan.github.io) | [🏠 Back to Profile](https://github.com/sagar-bushan)
