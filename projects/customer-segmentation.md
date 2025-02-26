@@ -1,69 +1,52 @@
 # Customer Segmentation Using K-Means Clustering
 
-## Business Problem
-E-commerce company needed to optimize marketing strategies and reduce return rates through better customer understanding. Key challenges included:
-- High product return rates affecting profitability
-- Inefficient marketing spend across customer groups
-- Limited understanding of customer behavior patterns
-- Need for data-driven customer targeting
+## Business Challenge
 
-## Solution Approach
-### Data Integration & Processing
-- Consolidated customer data sources:
-  - Purchase history
-  - Return patterns
-  - Customer demographics
-  - Behavioral metrics
-- Created unified customer database with 60,000+ profiles
-- Implemented automated data cleaning pipeline
+An e-commerce company was experiencing high return rates and inefficient marketing spend due to treating all customers the same way. They needed a data-driven approach to better understand customer behavior patterns and tailor their marketing strategies accordingly.
 
-### Analytics Implementation
-1. Feature Engineering
-   - Calculated RFM (Recency, Frequency, Monetary) scores
-   - Developed customer behavior metrics
-   - Created purchase pattern indicators
-   - Built return rate metrics
+## My Approach
 
-2. Clustering Implementation
-   - Implemented K-means clustering algorithm
-   - Optimized cluster count using elbow method
-   - Developed cluster stability metrics
-   - Created segment profiling system
+I framed this as a clustering analysis problem that would reveal natural groupings within their customer base. The approach combined statistical techniques with actionable business insights.
 
-3. Dashboard Development
-   - Built interactive Power BI dashboard
-   - Created segment analysis views
-   - Implemented drill-down capabilities
-   - Designed automated reporting system
+### Project Phases:
 
-## Technical Implementation
-- **Technologies Used:**
-  - Python (scikit-learn) for clustering
-  - SQL for data management
-  - Power BI for visualization
-  - Azure for data processing
+1. **Data Preparation & Exploration**
+   - Collected and cleaned data from 60,000+ customer profiles
+   - Analyzed purchase history, browsing behavior, and demographic information
+   - Identified key features for segmentation
 
-- **Key Features:**
-  - Automated customer scoring
-  - Dynamic segmentation
-  - Real-time segment tracking
-  - Performance monitoring
+2. **Segmentation Development**
+   - Implemented K-means clustering algorithm to identify distinct customer groups
+   - Created automated customer scoring system for segment assignment
+   - Developed cohort analysis pipeline for segment tracking over time
+
+3. **Operationalization**
+   - Built segment-specific dashboards for marketing and product teams
+   - Created recommendation engine for personalized customer interactions
+   - Designed monitoring system to track segment evolution
 
 ## Results & Impact
-- **Business Improvements:**
-  - 25% reduction in return rates
-  - Enhanced customer targeting
-  - Improved marketing efficiency
-  - Better resource allocation
 
-- **Operational Benefits:**
-  - Clear customer segments identified
-  - Targeted marketing opportunities
-  - Improved customer understanding
-  - Data-driven decision making
+![Customer Segmentation Dashboard](./images/segmentation-dashboard.png)
+*Click image to view full dashboard*
 
-## Dashboard Overview
+### Measurable Outcomes:
+- **25% reduction** in return rates through tailored product recommendations
+- **Improved customer targeting efficiency** across marketing channels
+- **Enhanced marketing campaign performance** with segment-specific messaging
+- **Identified high-value customer segments** for loyalty program development
 
+## Tools & Technologies
+
+- **Data Analysis:** Python (scikit-learn)
+- **Data Preparation:** SQL
+- **Visualization:** Tableau
+- **Automation:** Scheduled segment updates
+
+## Lessons Learned
+
+The project highlighted the importance of translating technical segmentation into actionable business strategies. By creating clear segment profiles with specific recommendations for each, we ensured the analysis directly informed business decisions.
 
 ---
-*For more information or collaboration opportunities, please reach out through the contact information provided in the main portfolio.*
+
+[📂 Back to Portfolio](https://github.com/sagar-bushan/sagar-bushan.github.io) | [🏠 Back to Profile](https://github.com/sagar-bushan)
