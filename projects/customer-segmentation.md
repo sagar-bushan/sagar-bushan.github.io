@@ -27,8 +27,7 @@ I framed this as a clustering analysis problem that would reveal natural groupin
 
 ## Results & Impact
 
-![Customer Segmentation Dashboard](./images/segmentation-dashboard.png)
-*Click image to view full dashboard*
+![Customer Segmentation Dashboard](https://github.com/sagar-bushan/sagar-bushan.github.io/blob/main/dashboard-images/segmentation-dashboard.png)
 
 ### Measurable Outcomes:
 - **25% reduction** in return rates through tailored product recommendations
