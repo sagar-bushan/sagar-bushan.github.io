@@ -4,7 +4,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ## Featured Projects
 
-### <ins>[Multi-Channel Marketing Analytics Platform]<ins>(./projects/marketing-analytics.md)
+### <ins>[Multi-Channel Marketing Analytics Platform](./projects/marketing-analytics.md)<ins>
 
 **Challenge:** E-commerce startup struggling with high acquisition costs across marketing channels  
 **Solution:** End-to-end performance tracking platform with attribution modeling  
