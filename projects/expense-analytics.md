@@ -27,7 +27,7 @@ I approached this as a data mining and anomaly detection challenge with signific
 
 ## Results & Impact
 
-![Expense Analytics Dashboard]([./images/expense-dashboard.png](https://github.com/sagar-bushan/sagar-bushan.github.io/blob/main/dashboard-images/expense-dashboard.png))
+![Expense Analytics Dashboard](https://github.com/sagar-bushan/sagar-bushan.github.io/blob/main/dashboard-images/expense-dashboard.png))
 
 ### Measurable Outcomes:
 - **$125,000 reduction** in annual travel expenses
