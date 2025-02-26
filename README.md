@@ -71,4 +71,4 @@ Welcome to my project showcase. Each project represents real business challenges
 
 I'm currently available for freelance projects and consulting engagements. If you're facing analytics challenges or looking to elevate your data strategy, let's talk.
 
-[📩 Contact Me](mailto:sagar.bushan@gmail.com) | [🏠 Back to Profile](./README.md)
+[📩 Contact Me](mailto:sagar.bushan@gmail.com) | [🏠 Back to Profile](https://github.com/sagar-bushan)
