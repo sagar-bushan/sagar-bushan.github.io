@@ -49,4 +49,4 @@ One significant challenge was handling attribution across devices and sessions. 
 
 ---
 
-[📂 Back to Portfolio](../portfolio.md) | [🏠 Back to Profile](https://github.com/sagar-bushan)
+[📂 Back to Portfolio](https://github.com/sagar-bushan/sagar-bushan.github.io) | [🏠 Back to Profile](https://github.com/sagar-bushan)
