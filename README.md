@@ -13,7 +13,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [KPI-Driven Sales Performance Management System](./projects/sales-analytics.md)
+**[KPI-Driven Sales Performance Management System](./projects/sales-analytics.md)**
 
 **Challenge:** Financial institution needed optimized performance tracking for 2000+ sales reps  
 **Solution:** Comprehensive KPI tracking system with automated incentive calculations  
@@ -22,7 +22,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [Predictive Supply Chain Analytics](./projects/supply-demand.md)
+**[Predictive Supply Chain Analytics](./projects/supply-demand.md)**
 
 **Challenge:** Manufacturing company faced inventory management issues  
 **Solution:** Demand forecasting model with inventory optimization framework  
@@ -31,7 +31,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [Customer Segmentation Using K-Means Clustering](./projects/customer-segmentation.md)
+**[Customer Segmentation Using K-Means Clustering](./projects/customer-segmentation.md)**
 
 **Challenge:** E-commerce company needed better customer understanding for targeting  
 **Solution:** K-means clustering on 60,000+ customer profiles with scoring system  
@@ -40,7 +40,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [Travel & Expense Analytics System](./projects/expense-analytics.md)
+**[Travel & Expense Analytics System](./projects/expense-analytics.md)**
 
 **Challenge:** Global professional services firm needed to optimize travel expenses  
 **Solution:** Automated expense analysis with anomaly detection  
@@ -49,7 +49,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [Performance Marketing Campaign Optimization](./projects/campaign-optimization.md)
+**[Performance Marketing Campaign Optimization](./projects/campaign-optimization.md)**
 
 **Challenge:** Series A startup needed to optimize digital marketing spend  
 **Solution:** Cross-platform performance tracking with ROAS optimization  
@@ -58,9 +58,7 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ---
 
-### [Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)
-
-### <span style="text-decoration: underline;">[Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)</span>
+**[Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)**
 
 
 
