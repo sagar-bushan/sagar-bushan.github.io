@@ -28,7 +28,6 @@ I approached this as both a data integration and analytics visualization challen
 ## Results & Impact
 
 ![Marketing Analytics Dashboard](https://github.com/sagar-bushan/sagar-bushan.github.io/blob/main/dashboard-images/marketing-dashboard.png)
-*Click image to view full dashboard*
 
 ### Measurable Outcomes:
 - **40% reduction** in overall Customer Acquisition Cost
