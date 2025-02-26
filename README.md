@@ -60,6 +60,10 @@ Welcome to my project showcase. Each project represents real business challenges
 
 ### [Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)
 
+### <span style="text-decoration: underline;">[Salesforce CRM Analytics & Adoption Tracking](./projects/crm-analytics.md)</span>
+
+
+
 **Challenge:** Global real estate firm needed improved CRM adoption  
 **Solution:** Comprehensive CRM usage analytics with adoption tracking  
 **Impact:** 20% improvement in Global CRM utilization  
